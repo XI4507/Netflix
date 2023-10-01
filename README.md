@@ -1,6 +1,8 @@
 # Netflix
     - Create React App
     - Configured Tailwind
+    - Build Header
+    - LoginForm
 # Features
 - Login/SignUp
     - SignIn / SignUp form

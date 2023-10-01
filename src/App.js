@@ -1,8 +1,11 @@
 import React from 'react'
+import Body from './components/Body'
 
 const App = () => {
   return (
-    <div className='text-red-600 text-3xl font-bold'>Lets Create Netflix</div>
+    <div>
+      <Body/>
+    </div>
   )
 }
 
