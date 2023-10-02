@@ -1,8 +1,11 @@
 # Netflix
+- implementations
     - Create React App
     - Configured Tailwind
     - Build Header
     - LoginForm
+    - Routing of App
+    - Form Validation
 # Features
 - Login/SignUp
     - SignIn / SignUp form

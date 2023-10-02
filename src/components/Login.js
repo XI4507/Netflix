@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import { checkValidData } from "../utils/Validate";
 
 const Login = () => {
+  const email=useRef(null)
+  const password=useRef(null)
+  const [errMessage,setErrMessage]=useState(null)
   const [isSignIn, setIsSign] = useState(true);
   function toggleSignInForm() {
     setIsSign(!isSignIn);
+  }
+  function handleButtonClick(){
+    const message=checkValidData(email.current.value,password.current.value);
+    setErrMessage(message)
+    if(message) return;
+    //sign in and sign up logic
   }
   return (
     <div>
@@ -15,7 +25,7 @@ const Login = () => {
           alt="background-pic"
         />
       </div>
-      <form className="rounded-lg absolute w-3/12 bg-black my-36 mx-auto right-0 left-0 p-8 text-white flex flex-col bg-opacity-80">
+      <form onSubmit={(e)=>e.preventDefault()} className="rounded-lg absolute w-3/12 bg-black my-36 mx-auto right-0 left-0 p-8 text-white flex flex-col bg-opacity-80">
         <h1 className="font-bold text-2xl m-2 mb-4">{isSignIn ? "Sign In" : "Sign Up"}</h1>
         {
             !isSignIn && <input
@@ -28,17 +38,20 @@ const Login = () => {
           type="text"
           placeholder="Email address"
           className="p-2 m-2 w-full rounded-sm bg-gray-600"
+          ref={email}
         />
         <input
           type="password"
           placeholder="Password"
           className="p-2 m-2 w-full rounded-sm bg-gray-600"
+          ref={password}
         />
-        <button className="p-2 m-2 bg-red-700 w-full rounded-sm mt-6">
+        <p className="p-2 m-2 text-red-600 font-bold">{errMessage}</p>
+        <button className="p-2 m-2 bg-red-700 w-full rounded-sm mt-6" onClick={handleButtonClick}>
         {isSignIn ? "Sign In" : "Sign Up"}
         </button>
         <p className="p-2 m-2 mt-6 cursor-pointer" onClick={toggleSignInForm}>
-        <u>{isSignIn ? "New to Netflix? Sign up" : "Already a member ?"}</u>
+        <u>{isSignIn ? "New to Netflix? Sign up now" : "Already a member ? Sign In"}</u>
         </p>
       </form>
     </div>
